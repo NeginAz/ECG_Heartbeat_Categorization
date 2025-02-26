@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ECG Heartbeat Categorization</title>
+</head>
+<body>
+    <h1>Upload ECG Signal CSV</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept=".csv">
+        <button type="submit">Upload and Predict</button>
+    </form>
+
+    <p id="predictionResult"></p>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = async function(event) {
+            event.preventDefault();
+            
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a file first.');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                console.log('Response data:', data); // Debugging log
+
+                // Check if predicted_classes is available in the response
+                if (data.predicted_classes && data.predicted_classes.length > 0) {
+                    document.getElementById('predictionResult').textContent = 
+                        `Predicted Classes: ${data.predicted_classes.join(', ')}`;
+                } else if (data.error) {
+                    document.getElementById('predictionResult').textContent = 
+                        `Error: ${data.error}`;
+                } else {
+                    document.getElementById('predictionResult').textContent = 
+                        'No predictions available.';
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('predictionResult').textContent = 
+                    `Error: ${error.message}`;
+            }
+        };
+    </script>
+</body>
+</html>
