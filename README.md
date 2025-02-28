@@ -56,6 +56,13 @@ pip install -r requirements.txt
 - **Feature Engineering:** Added statistical features such as mean, standard deviation, skewness, and kurtosis.
 - **Handling Imbalance:** Synthetic samples generated using GMM for minority classes.
 
+In the begining, I started by exploring the dataset. First, checking the dimensions of the train and test sets, and number of samples in both sets. In order to learn more about the nature of the datset, I started by obserivng a few samples of the dataset, to know the features. Later, I checked the distribution of labesl, to see how balanced the dataset is. 
+We observed that class number 3, 1 and 2 are significantly undersampled. Thus, this dataset needs data augmentation techniques to even the data for training. 
+
+Then, I startd by computing the statistical measures of the train and test set. Then plotting a few samples, and bar plot of class distributions. I then plotted the first two components of train set using PCA and T-SNE. to see the clusters and give more insight for furthur analysis. Then, I sepetated the validation set from the train set. The augmentation techniques will be applied only on the traning set, and the validation set is remained the same. The test set is also broken down into half, a test set and a hold-out set. The hold-out set will be later be modfied to test the model against noisy data and time shifts, to measure the robustness of the model. For the validaion  set, the equal number of samples from each class was selectd to make sure the the training is tested on a fair basis. 
+Later I explored three differnet methods for data generation: using gussuan mixture models, GAN, and resampling (upsamppling the signal). 
+
+
 ## Model Training
 
 - **Model Architecture:** A CNN-LSTM hybrid model with early stopping and learning rate scheduling.
