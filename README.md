@@ -71,7 +71,7 @@ pip install -r requirements.txt
 
   
 
-### Findings:
+Findings: 
 Classes 1, 2, and 3 were significantly underrepresented in the dataset, highlighting the need for data augmentation.
 
 -  2.Data Preparation
