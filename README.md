@@ -183,6 +183,10 @@ For Class 3, I generated 6,500 samples; for Class 1, 20,000 samples; and for Cla
     <img src="https://github.com/user-attachments/assets/d3d9d9e6-1b24-431b-848d-b15075e55765" width="250">
 </div>
 
+The model achieved 89% accuracy on the validation set, test set, and holdout set. This consistent performance across different datasets indicates that the model generalizes well to unseen data, even under variations introduced in the holdout set.
+
+### Augmentation Using Gaussian Mixture Model (GMM):
+Gaussian Mixture Models (GMM) are a probabilistic approach that can be used for data augmentation, particularly for time-series and signal data like ECG signals. GMMs generate synthetic data by learning the underlying distribution of each class and sampling new points from it. This method is useful for handling imbalanced datasets by creating realistic variations of minority class signals while preserving their statistical properties. The generated samples are then scaled and combined with real data to enhance model generalization.
 
 
 
