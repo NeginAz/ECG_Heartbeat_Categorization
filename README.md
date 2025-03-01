@@ -97,7 +97,7 @@ Applied batch normalization, dropout regularization, and early stopping to preve
 Hyperparameter tuning was conducted to optimize model performance.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/9213b55d-417a-4a1e-8d30-7f7a89ffbca5" alt="Sample Image" width="500">
+<img src="https://github.com/user-attachments/assets/9213b55d-417a-4a1e-8d30-7f7a89ffbca5" alt="Sample Image" width="700">
 </p>  
 
 The model is a hybrid CNN-LSTM architecture designed for time-series classification, as follows: 
