@@ -34,9 +34,9 @@ Before training any model, we conducted an in-depth analysis of the dataset:
   - Used bar plots to show class distributions.
  - Applied Principal Component Analysis (PCA) and T-SNE to project high-dimensional data into two components for better insight.
  - As ECG signals are sequential, each data point depends on the preceding and succeeding points. 
-
-<img src="https://github.com/user-attachments/assets/5d53e8d2-73f1-41ad-b75a-327d4f045d1a" alt="Sample Image" width="500" height="300">
-  
+<p align="center">
+<img src="https://github.com/user-attachments/assets/5d53e8d2-73f1-41ad-b75a-327d4f045d1a" alt="Sample Image" width="500">
+</p>  
 
 Findings: 
 Classes 1, 2, and 3 were significantly underrepresented in the dataset, highlighting the need for data augmentation.
