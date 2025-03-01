@@ -170,6 +170,20 @@ Upsampling was performed using sklearn.utils.resample to address class imbalance
 <img src="https://github.com/user-attachments/assets/44fd270d-2005-4051-afa1-03c0b45ca9ac" alt="Sample Image" width="300">
 </p>
 
+For Class 3, I generated 6,500 samples; for Class 1, 20,000 samples; and for Class 2, 50,000 samples. The goal was to generate approximately ten times the number of samples for each instance in the training set. These generated samples were then concatenated with the existing training data. Additionally, using augmentation techniques such as time shifting, noise addition, and range scaling, the dataset size increased by 1.5 times. Below are the accuracy and confusion matrix figures:
+
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/bb1a6d4d-e0fa-4de7-8d1d-043e0191baee" alt="Sample Image" width="300">
+</p>
+
+
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/9ee4d443-d9f1-4f0a-9460-926f8d261664" width="250">
+    <img src="https://github.com/user-attachments/assets/d3d9d9e6-1b24-431b-848d-b15075e55765" width="250">
+</div>
+
+
 
 
 ## Project Structure
