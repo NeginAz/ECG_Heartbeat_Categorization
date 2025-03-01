@@ -153,13 +153,13 @@ Discussed deployment considerations including scalability, versioning, and monit
 For the first model, the LSTM-CNN without any data augmentation, the figures are below:
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/1a099712-f1f5-4889-b35e-78bd46dd4b65" alt="Sample Image" width="900">
+<img src="https://github.com/user-attachments/assets/1a099712-f1f5-4889-b35e-78bd46dd4b65" alt="Sample Image" width="300">
 </p>  
 
 
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/64842f70-0c39-4dbd-88ad-185616c12c10" width="500">
-    <img src="https://github.com/user-attachments/assets/9ee97c5e-70ee-48ce-b6be-59a8a645d29f" width="500">
+    <img src="https://github.com/user-attachments/assets/64842f70-0c39-4dbd-88ad-185616c12c10" width="250">
+    <img src="https://github.com/user-attachments/assets/9ee97c5e-70ee-48ce-b6be-59a8a645d29f" width="250">
 </div>
 
 
