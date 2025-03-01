@@ -96,10 +96,15 @@ Implemented a CNN-LSTM hybrid model for ECG classification.
 Applied batch normalization, dropout regularization, and early stopping to prevent overfitting.
 Hyperparameter tuning was conducted to optimize model performance.
 
+<p align="center">
+<img src="https://github.com/user-attachments/assets/88bbcd8a-7289-4725-952f-8e9fc1a4777a" alt="Sample Image" width="500">
+</p>  
+
+
 The model is a hybrid CNN-LSTM architecture designed for time-series classification, as follows: 
 #### Convolutional Layers (Conv1D):
 - The first two Conv1D layers extract local patterns from the ECG signals.
-- The kernel size 3 allows the model to detect small changes in waveform. 
+- The kernel size 3 allows the model to detect small changes in waveform.
 #### Batch Normalization: 
 - Stabilizes training and speeds up convergence
 
