@@ -163,10 +163,12 @@ On the test set, the model performs well primarily on class 0 due to the data im
     <img src="https://github.com/user-attachments/assets/9ee97c5e-70ee-48ce-b6be-59a8a645d29f" width="250">
 </div>
 
-### AAugmenting Underrepresented Classes Using Upsampling: 
-Upsampling was performed using sklearn.utils.resample to address class imbalance by increasing the number of samples for underrepresented classes. This technique duplicates and slightly varies existing samples to provide a more balanced dataset for training, improving model performance across all classes.
+### Augmenting Underrepresented Classes Using Upsampling: 
+Upsampling was performed using sklearn.utils.resample to address class imbalance by increasing the number of samples for underrepresented classes. This technique duplicates and slightly varies existing samples to provide a more balanced dataset for training, improving model performance across all classes. A sample of the generated signals for Class 1 is shown in the figure below:
 
-
+<p align="center">
+<img src="https://github.com/user-attachments/assets/44fd270d-2005-4051-afa1-03c0b45ca9ac" alt="Sample Image" width="300">
+</p>
 
 
 
