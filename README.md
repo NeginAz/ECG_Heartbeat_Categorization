@@ -150,17 +150,24 @@ Discussed deployment considerations including scalability, versioning, and monit
 - Test Accuracy: \~84%
 - Holdout Set Performance: Analyzed and discussed the impact of data shifts.
 
-For the first model, the LSTM-CNN without any data augmentation, the figures are below:
+### No augmentation: 
+As the dataset is highly imbalanced, with a significantly larger number of samples from class 0, the model achieves high accuracy on both the training and validation sets. However, when evaluating beyond accuracy—specifically, class-wise precision; we observe that the model struggles to correctly classify the underrepresented classes, frequently misclassifying them as class 0.
 
+On the test set, the model performs well primarily on class 0 due to the data imbalance, while other classes exhibit poor classification performance. Similarly, on the holdout set, when noise is introduced, the precision of all classes decreases, though not drastically. This further highlights the model's reliance on the dominant class and the need for data balancing to improve classification performance across all classes.
 <p align="center">
 <img src="https://github.com/user-attachments/assets/1a099712-f1f5-4889-b35e-78bd46dd4b65" alt="Sample Image" width="300">
 </p>  
-
 
 <div align="center">
     <img src="https://github.com/user-attachments/assets/64842f70-0c39-4dbd-88ad-185616c12c10" width="250">
     <img src="https://github.com/user-attachments/assets/9ee97c5e-70ee-48ce-b6be-59a8a645d29f" width="250">
 </div>
+
+### AAugmenting Underrepresented Classes Using Upsampling: 
+Upsampling was performed using sklearn.utils.resample to address class imbalance by increasing the number of samples for underrepresented classes. This technique duplicates and slightly varies existing samples to provide a more balanced dataset for training, improving model performance across all classes.
+
+
+
 
 
 ## Project Structure
