@@ -96,6 +96,31 @@ Implemented a CNN-LSTM hybrid model for ECG classification.
 Applied batch normalization, dropout regularization, and early stopping to prevent overfitting.
 Hyperparameter tuning was conducted to optimize model performance.
 
+The model is a hybrid CNN-LSTM architecture designed for time-series classification, as follows: 
+#### Convolutional Layers (Conv1D):
+- The first two Conv1D layers extract local patterns from the ECG signals.
+- The kernel size 3 allows the model to detect small changes in waveform. 
+#### Batch Normalization: 
+- Stabilizes training and speeds up convergence
+
+#### MaxPooling1D: 
+- Reduces dimensionality while preserving the most important features.
+  
+#### Dropout Layers:
+- Prevents overfitting by randomly deactivating some neurons during training.
+  
+#### LSTM Layer:
+- Captures long-range dependencies in the ECG signal (detecting irregularities)
+  
+#### Dense Layers with Regularization:
+- The dense layer adds more learning capacity.
+- L2 regularization prevents overfitting. 
+
+#### Softmax Output Layer:
+- Used for multi-class classification (each ECG signal is assigned a probability for each class).
+
+This model is effective for ECG classification because CNNs extract spatial features, and LSTMs learn temporal relationships, making it suitable for time-series data like ECG signals.
+
 ### 6. Model Evaluation
 Evaluated the model on the validation set and test set.
 Used metrics including accuracy, precision, recall, F1-score, and confusion matrix.
