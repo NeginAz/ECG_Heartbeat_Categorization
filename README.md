@@ -15,40 +15,6 @@ The dataset used for this project is sourced from Physionet's MIT-BIH Arrhythmia
 3. **Testing on Holdout Set:** Simulate data shifts and evaluate performance.
 4. **Deployment:** Implement a Flask API for model inference and discuss deployment strategies.
 
-## Project Structure
-
-```
-ECG_Heartbeat_Categorization/
-│
-├── data/                   # Raw and processed data files
-├── notebooks/              # Jupyter notebooks for EDA, model training, and testing
-├── src/                    # Source code including model, augmentation, and API
-│   ├── cnn_lstm_classifier.py
-│   ├── data_augmentation.py
-│   └── app.py              # Flask application
-├── templates/              # HTML templates for the web interface
-│   └── index.html
-├── requirements.txt        # Python package requirements
-└── README.md               # Project documentation
-```
-
-## Installation
-
-1. Clone the repository:
-
-```sh
-git clone https://github.com/yourusername/ECG_Heartbeat_Categorization.git
-cd ECG_Heartbeat_Categorization
-```
-
-2. Create a virtual environment and install dependencies:
-
-```sh
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
 ## Data Processing
 
 - **EDA:** Visualized class distribution and identified data imbalance.
@@ -135,7 +101,41 @@ Discussed deployment considerations including scalability, versioning, and monit
 
 - **API:** Developed a Flask API (`app.py`) to accept CSV uploads and predict heartbeat classes.
 - **Frontend:** Simple web interface for file upload and result display.
-- **Model Inference:** The API loads the trained model (`best_model.h5`) and processes input data.
+- **Model Inference:** The API loads the trained model (`saved_model.h5`) and processes input data.
+
+## Project Structure
+
+```
+ECG_Heartbeat_Categorization/
+│
+├── data/                   # Raw and processed data files
+├── notebooks/              # Jupyter notebooks for EDA, model training, and testing
+├── src/                    # Source code including model, augmentation, and API
+│   ├── cnn_lstm_classifier.py
+│   ├── data_augmentation.py
+│   └── app.py              # Flask application
+├── templates/              # HTML templates for the web interface
+│   └── index.html
+├── requirements.txt        # Python package requirements
+└── README.md               # Project documentation
+```
+
+## Installation
+
+1. Clone the repository:
+
+```sh
+git clone https://github.com/yourusername/ECG_Heartbeat_Categorization.git
+cd ECG_Heartbeat_Categorization
+```
+
+2. Create a virtual environment and install dependencies:
+
+```sh
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 
 ### Run the Flask App
