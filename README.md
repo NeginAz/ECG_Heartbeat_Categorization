@@ -38,6 +38,15 @@ Before training any model, we conducted an in-depth analysis of the dataset:
 <img src="https://github.com/user-attachments/assets/bfedce1b-30c8-4789-980b-29073e376767" alt="Sample Image" width="500">
 </p>  
 
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/d3b6d6dc-d572-49dc-b710-49008ef77238" width="500">
+    <img src="https://github.com/user-attachments/assets/2e045c68-945a-4592-8139-af8f8a7848bd" width="500">
+    <img src="https://github.com/user-attachments/assets/909ce610-830b-436b-9d1d-8a5f3401f94e" width="500">
+    <img src="https://github.com/user-attachments/assets/4152fb0d-f34a-483e-a194-1d2b911fbed6" width="500">
+    <img src="https://github.com/user-attachments/assets/941965e3-df70-403b-bfa6-a3c04ff2dd8a" width="500">
+</div>
+
+
 Findings: 
 Classes 1, 2, and 3 were significantly underrepresented in the dataset, highlighting the need for data augmentation.
 
