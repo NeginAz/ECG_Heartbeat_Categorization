@@ -56,8 +56,8 @@ pip install -r requirements.txt
 - **Feature Engineering:** Added statistical features such as mean, standard deviation, skewness, and kurtosis.
 - **Handling Imbalance:** Synthetic samples generated using GMM for minority classes.
 
-- 1. Exploratory Data Analysis (EDA):
-     Before training any model, we conducted an in-depth analysis of the dataset:
+### 1. Exploratory Data Analysis (EDA):
+Before training any model, we conducted an in-depth analysis of the dataset:
 
 - Dataset Structure: Checked the dimensions of both the training and test sets.
 - Sample Inspection: Observed a few samples of ECG signals to understand their nature.
@@ -74,7 +74,7 @@ pip install -r requirements.txt
 Findings: 
 Classes 1, 2, and 3 were significantly underrepresented in the dataset, highlighting the need for data augmentation.
 
--  2.Data Preparation
+###  2.Data Preparation
  - Dataset Splitting:
     - Created a validation set from the training set to ensure fair model evaluation.
     Divided the test set into:
@@ -82,54 +82,54 @@ Classes 1, 2, and 3 were significantly underrepresented in the dataset, highligh
     - Holdout Set (later used to test model robustness against noisy and shifted data).
     The validation set was balanced, meaning each class had an equal number of samples. (how many ??? )
 
-- 3. Data Augmentation Techniques
+### 3. Data Augmentation Techniques
  
 To handle the class imbalance issue, we experimented with three augmentation strategies:
 
-- 3.1 Gaussian Mixture Model (GMM)
+#### 3.1 Gaussian Mixture Model (GMM)
 
 We trained Gaussian Mixture Models (GMM) on the minority classes.
 The trained GMMs generated synthetic ECG signals to augment the dataset.
 
 
-3.2 Generative Adversarial Networks (GANs)
+#### 3.2 Generative Adversarial Networks (GANs)
 -  Implemented multiple versions of GAN-based signal generation, inspired by prior -  research on ECG synthesis.
 - The generator models were designed using LSTM and CNN layers to capture temporal dependencies.
 - The discriminator networks used 1D Convolutional layers to distinguish real and fake signals.
 
-3.3 Resampling (Upsampling)
+#### 3.3 Resampling (Upsampling)
 
 Used bootstrapping (resampling with replacement) to duplicate underrepresented class samples.
 The goal was to increase representation without introducing synthetic data.
 
 
-4. Additional Pre-Training Augmentation
+### 4. Additional Pre-Training Augmentation
 Before training, additional data augmentation techniques were applied directly to the original ECG signals to improve model generalization:
 
-4.1. Time Shifting
+#### 4.1. Time Shifting
 
 Each ECG signal was shifted slightly forward or backward in time.
 Helps the model become invariant to phase shifts, making it more robust.
-4.2. Noise Addition
+#### 4.2. Noise Addition
 
 Random Gaussian noise was added to the signals to simulate real-world variations.
 Prevents overfitting and forces the model to learn more generalizable features.
 
-5. Model Selection and Training
+### 5. Model Selection and Training
 Implemented a CNN-LSTM hybrid model for ECG classification.
 Applied batch normalization, dropout regularization, and early stopping to prevent overfitting.
 Hyperparameter tuning was conducted to optimize model performance.
 
-6. Model Evaluation
+### 6. Model Evaluation
 Evaluated the model on the validation set and test set.
 Used metrics including accuracy, precision, recall, F1-score, and confusion matrix.
 Compared model performance across datasets with and without augmentation.
 
-7. Robustness Testing on Holdout Set
+### 7. Robustness Testing on Holdout Set
 Introduced noise and time shifts to test model stability.
 Assessed how well the model generalized under data distribution shifts.
 
-8. Model Deployment Strategy
+### 8. Model Deployment Strategy
 Designed an inference pipeline to make real-time predictions on ECG data.
 Discussed deployment considerations including scalability, versioning, and monitoring.
 
