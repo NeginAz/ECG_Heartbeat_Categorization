@@ -56,37 +56,87 @@ pip install -r requirements.txt
 - **Feature Engineering:** Added statistical features such as mean, standard deviation, skewness, and kurtosis.
 - **Handling Imbalance:** Synthetic samples generated using GMM for minority classes.
 
-In the begining, I started by exploring the dataset. First, checking the dimensions of the train and test sets, and number of samples in both sets. In order to learn more about the nature of the datset, I started by obserivng a few samples of the dataset, to know the features. Later, I checked the distribution of labesl, to see how balanced the dataset is. 
-We observed that class number 3, 1 and 2 are significantly undersampled. Thus, this dataset needs data augmentation techniques to even the data for training. 
+- 1. Exploratory Data Analysis (EDA):
+     Before training any model, we conducted an in-depth analysis of the dataset:
 
-Then, I startd by computing the statistical measures of the train and test set. Then plotting a few samples, and bar plot of class distributions. I then plotted the first two components of train set using PCA and T-SNE. to see the clusters and give more insight for furthur analysis. Then, I sepetated the validation set from the train set. The augmentation techniques will be applied only on the traning set, and the validation set is remained the same. The test set is also broken down into half, a test set and a hold-out set. The hold-out set will be later be modfied to test the model against noisy data and time shifts, to measure the robustness of the model. For the validaion  set, the equal number of samples from each class was selectd to make sure the the training is tested on a fair basis. 
-Later I explored three differnet methods for data generation: using gussuan mixture models, GAN, and resampling (upsamppling the signal). 
+- Dataset Structure: Checked the dimensions of both the training and test sets.
+- Sample Inspection: Observed a few samples of ECG signals to understand their nature.
+- Class Distribution: Visualized the distribution of heartbeat categories to assess dataset balance.
+- Feature Statistics: Computed statistical properties of the train and test sets.
+- Visualization:
+  - Plotted a few raw ECG signals.
+  - Used bar plots to show class distributions.
+ - Applied Principal Component Analysis (PCA) and T-SNE to project high-dimensional data into two components for better insight.
+ - As ECG signals are sequential, each data point depends on the preceding and succeeding points. 
+
+  
+
+### Findings:
+Classes 1, 2, and 3 were significantly underrepresented in the dataset, highlighting the need for data augmentation.
+
+-  2.Data Preparation
+ - Dataset Splitting:
+    - Created a validation set from the training set to ensure fair model evaluation.
+    Divided the test set into:
+    - Regular Test Set (used for final evaluation).
+    - Holdout Set (later used to test model robustness against noisy and shifted data).
+    The validation set was balanced, meaning each class had an equal number of samples. (how many ??? )
+
+- 3. Data Augmentation Techniques
+ 
+To handle the class imbalance issue, we experimented with three augmentation strategies:
+
+- 3.1 Gaussian Mixture Model (GMM)
+
+We trained Gaussian Mixture Models (GMM) on the minority classes.
+The trained GMMs generated synthetic ECG signals to augment the dataset.
 
 
-As ECG signals are sequential, each data point depends on the preceding and succeeding points. 
+3.2 Generative Adversarial Networks (GANs)
+-  Implemented multiple versions of GAN-based signal generation, inspired by prior -  research on ECG synthesis.
+- The generator models were designed using LSTM and CNN layers to capture temporal dependencies.
+- The discriminator networks used 1D Convolutional layers to distinguish real and fake signals.
 
-1 -Gussian Mixture Models: For the three classes with the least nunber of samples, we used this method to genrate more samples. By plotting the T-SNE and PCA, to find out how many components are needded. Based on the plots, one and two components were generated. The samples generated were noisy and not similar to the original ones. 
+3.3 Resampling (Upsampling)
 
-2- The second method was using GANs to generate more samples for the undersampeld classes. I implemneted and tested different GANs. The LST and BiLSTM components of the generator model helo capture the dependencies of data points, where as the convolution layers allow the model to learn the features. 
-3- 
-## Model Training
+Used bootstrapping (resampling with replacement) to duplicate underrepresented class samples.
+The goal was to increase representation without introducing synthetic data.
 
-- **Model Architecture:** A CNN-LSTM hybrid model with early stopping and learning rate scheduling.
-- **Imbalance Handling:** Applied oversampling and augmentation strategies.
-- **Validation Strategy:** 5-fold cross-validation with StratifiedKFold.
-- **Evaluation Metrics:** Accuracy, recall, precision, F1 score, and confusion matrix.
 
-## Holdout Set Testing
+4. Additional Pre-Training Augmentation
+Before training, additional data augmentation techniques were applied directly to the original ECG signals to improve model generalization:
 
-- Created a holdout set to simulate real-world data shifts.
-- Introduced noise using the `DataAugmentation` class.
-- Evaluated performance degradation and analyzed results.
+4.1 Time Shifting
 
-## Deployment
+Each ECG signal was shifted slightly forward or backward in time.
+Helps the model become invariant to phase shifts, making it more robust.
+4.2 Noise Addition
+
+Random Gaussian noise was added to the signals to simulate real-world variations.
+Prevents overfitting and forces the model to learn more generalizable features.
+
+5. Model Selection and Training
+Implemented a CNN-LSTM hybrid model for ECG classification.
+Applied batch normalization, dropout regularization, and early stopping to prevent overfitting.
+Hyperparameter tuning was conducted to optimize model performance.
+
+6. Model Evaluation
+Evaluated the model on the validation set and test set.
+Used metrics including accuracy, precision, recall, F1-score, and confusion matrix.
+Compared model performance across datasets with and without augmentation.
+
+7. Robustness Testing on Holdout Set
+Introduced noise and time shifts to test model stability.
+Assessed how well the model generalized under data distribution shifts.
+
+8. Model Deployment Strategy
+Designed an inference pipeline to make real-time predictions on ECG data.
+Discussed deployment considerations including scalability, versioning, and monitoring.
 
 - **API:** Developed a Flask API (`app.py`) to accept CSV uploads and predict heartbeat classes.
 - **Frontend:** Simple web interface for file upload and result display.
 - **Model Inference:** The API loads the trained model (`best_model.h5`) and processes input data.
+
 
 ### Run the Flask App
 
@@ -102,6 +152,14 @@ Navigate to `http://localhost:5000` in your browser.
 - Validation Accuracy: \~92%
 - Test Accuracy: \~84%
 - Holdout Set Performance: Analyzed and discussed the impact of data shifts.
+
+
+
+## Key Takeaways
+
+Data augmentation significantly improved classification performance, especially for underrepresented classes.
+GANs were the most effective method for generating realistic ECG waveforms, but GMM-based augmentation was computationally cheaper.
+The model was sensitive to data shifts and noise, requiring additional robustness testing.
 
 ## Future Work
 
