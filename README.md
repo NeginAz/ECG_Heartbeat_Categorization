@@ -97,7 +97,7 @@ Applied batch normalization, dropout regularization, and early stopping to preve
 Hyperparameter tuning was conducted to optimize model performance.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/88bbcd8a-7289-4725-952f-8e9fc1a4777a" alt="Sample Image" width="500">
+<img src="https://github.com/user-attachments/assets/88bbcd8a-7289-4725-952f-8e9fc1a4777a" alt="Sample Image" height="200">
 </p>  
 
 
