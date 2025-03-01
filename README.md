@@ -106,11 +106,11 @@ The goal was to increase representation without introducing synthetic data.
 4. Additional Pre-Training Augmentation
 Before training, additional data augmentation techniques were applied directly to the original ECG signals to improve model generalization:
 
-4.1 Time Shifting
+4.1. Time Shifting
 
 Each ECG signal was shifted slightly forward or backward in time.
 Helps the model become invariant to phase shifts, making it more robust.
-4.2 Noise Addition
+4.2. Noise Addition
 
 Random Gaussian noise was added to the signals to simulate real-world variations.
 Prevents overfitting and forces the model to learn more generalizable features.
