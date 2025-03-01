@@ -62,10 +62,12 @@ We observed that class number 3, 1 and 2 are significantly undersampled. Thus, t
 Then, I startd by computing the statistical measures of the train and test set. Then plotting a few samples, and bar plot of class distributions. I then plotted the first two components of train set using PCA and T-SNE. to see the clusters and give more insight for furthur analysis. Then, I sepetated the validation set from the train set. The augmentation techniques will be applied only on the traning set, and the validation set is remained the same. The test set is also broken down into half, a test set and a hold-out set. The hold-out set will be later be modfied to test the model against noisy data and time shifts, to measure the robustness of the model. For the validaion  set, the equal number of samples from each class was selectd to make sure the the training is tested on a fair basis. 
 Later I explored three differnet methods for data generation: using gussuan mixture models, GAN, and resampling (upsamppling the signal). 
 
+
+As ECG signals are sequential, each data point depends on the preceding and succeeding points. 
+
 1 -Gussian Mixture Models: For the three classes with the least nunber of samples, we used this method to genrate more samples. By plotting the T-SNE and PCA, to find out how many components are needded. Based on the plots, one and two components were generated. The samples generated were noisy and not similar to the original ones. 
 
-2- The second method was using GANs to generate more samples for the undersampeld classes. I implemneted and tested different GANs. 
-
+2- The second method was using GANs to generate more samples for the undersampeld classes. I implemneted and tested different GANs. The LST and BiLSTM components of the generator model helo capture the dependencies of data points, where as the convolution layers allow the model to learn the features. 
 3- 
 ## Model Training
 
