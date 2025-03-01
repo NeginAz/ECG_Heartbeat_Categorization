@@ -35,7 +35,7 @@ Before training any model, we conducted an in-depth analysis of the dataset:
  - Applied Principal Component Analysis (PCA) and T-SNE to project high-dimensional data into two components for better insight.
  - As ECG signals are sequential, each data point depends on the preceding and succeeding points. 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/5d53e8d2-73f1-41ad-b75a-327d4f045d1a" alt="Sample Image" width="500">
+<img src="https://github.com/user-attachments/assets/bfedce1b-30c8-4789-980b-29073e376767" alt="Sample Image" width="500">
 </p>  
 
 Findings: 
