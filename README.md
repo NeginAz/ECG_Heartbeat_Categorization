@@ -142,6 +142,27 @@ Discussed deployment considerations including scalability, versioning, and monit
 - **Frontend:** Simple web interface for file upload and result display.
 - **Model Inference:** The API loads the trained model (`saved_model.h5`) and processes input data.
 
+
+
+## Results
+
+- Validation Accuracy: \~92%
+- Test Accuracy: \~84%
+- Holdout Set Performance: Analyzed and discussed the impact of data shifts.
+
+For the first model, the LSTM-CNN without any data augmentation, the figures are below:
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/1a099712-f1f5-4889-b35e-78bd46dd4b65" alt="Sample Image" width="900">
+</p>  
+
+
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/64842f70-0c39-4dbd-88ad-185616c12c10" width="500">
+    <img src="https://github.com/user-attachments/assets/9ee97c5e-70ee-48ce-b6be-59a8a645d29f" width="500">
+</div>
+
+
 ## Project Structure
 
 ```
@@ -158,6 +179,7 @@ ECG_Heartbeat_Categorization/
 ├── requirements.txt        # Python package requirements
 └── README.md               # Project documentation
 ```
+
 
 ## Installation
 
@@ -185,13 +207,6 @@ python app.py
 ```
 
 Navigate to `http://localhost:5000` in your browser.
-
-## Results
-
-- Validation Accuracy: \~92%
-- Test Accuracy: \~84%
-- Holdout Set Performance: Analyzed and discussed the impact of data shifts.
-
 
 
 ## Key Takeaways
