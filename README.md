@@ -23,23 +23,23 @@ The repository is organized into the following directories:
 ### src/ - Core Model & Augmentation Implementations
 This folder contains Python classes and functions used across different notebooks. It includes:
 
-cnn_lstm_classifier.py – Implementation of a CNN-LSTM-based classifier.
-generate_synthetic_data_gmm.py – GMM-based data augmentation.
-gan_time_series_generator.py – Generative Adversarial Network (GAN) for synthetic ECG data.
-data_augmentation.py – Functions for augmentation techniques like noise addition and time shifting.
-dimensionality_reduction.py – PCA and t-SNE implementations for feature visualization.
-class_data_resampler.py – Resampling techniques for handling imbalanced datasets.
-utils.py – Utility functions, including stratified sampling.
+- cnn_lstm_classifier.py – Implementation of a CNN-LSTM-based classifier.
+- generate_synthetic_data_gmm.py – GMM-based data augmentation.
+- gan_time_series_generator.py – Generative Adversarial Network (GAN) for synthetic ECG data.
+- data_augmentation.py – Functions for augmentation techniques like noise addition and time shifting.
+- dimensionality_reduction.py – PCA and t-SNE implementations for feature visualization.
+- class_data_resampler.py – Resampling techniques for handling imbalanced datasets.
+- utils.py – Utility functions, including stratified sampling.
  A [README](src/SRC_README.md) inside this folder explains the contents and usage of each script.
 
 ### notebooks/ - Exploratory & Experimental Notebooks
 This directory contains Jupyter notebooks implementing different approaches for ECG classification:
 
-EDA.ipynb – Exploratory Data Analysis (EDA) and feature visualization.
-GMM.ipynb – Data augmentation using Gaussian Mixture Models with classification.
-GAN.ipynb – Synthetic data generation with a GAN and classification.
-Resample.ipynb – Resampling-based data augmentation with classification.
-No_Augmentation.ipynb – Baseline classification model without augmentation.
+- EDA.ipynb – Exploratory Data Analysis (EDA) and feature visualization.
+- GMM.ipynb – Data augmentation using Gaussian Mixture Models with classification.
+- GAN.ipynb – Synthetic data generation with a GAN and classification.
+- Resample.ipynb – Resampling-based data augmentation with classification.
+- No_Augmentation.ipynb – Baseline classification model without augmentation.
 [README](notebooks/NOTEBOOKS_README.md) has detailed explanations of the methodology and findings.
 
 ### data/ - Dataset, Models & Figures
@@ -51,9 +51,9 @@ Figures: Plots and visualizations generated during analysis.
 ### api/ - Flask Application for Model Deployment
 This folder contains a minimal Flask app to serve the trained ECG classification model:
 
-app.py – The main API backend for handling requests.
-index.html – A simple frontend for user interaction.
-📌 See the [README.md](api/API_README.md) in this folder for deployment instructions.
+- app.py – The main API backend for handling requests.
+- index.html – A simple frontend for user interaction.
+See the [README.md](api/API_README.md) in this folder for deployment instructions.
 
 
 ## Data Processing
