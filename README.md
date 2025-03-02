@@ -15,8 +15,48 @@ The dataset used for this project is sourced from Physionet's MIT-BIH Arrhythmia
 3. **Testing on Holdout Set:** Simulate data shifts and evaluate performance.
 4. **Deployment:** Implement a Flask API for model inference and discuss deployment strategies.
 
-## Data Processing
 
+## Project Structure
+
+The repository is organized into the following directories:
+
+### src/ - Core Model & Augmentation Implementations
+This folder contains Python classes and functions used across different notebooks. It includes:
+
+cnn_lstm_classifier.py – Implementation of a CNN-LSTM-based classifier.
+generate_synthetic_data_gmm.py – GMM-based data augmentation.
+gan_time_series_generator.py – Generative Adversarial Network (GAN) for synthetic ECG data.
+data_augmentation.py – Functions for augmentation techniques like noise addition and time shifting.
+dimensionality_reduction.py – PCA and t-SNE implementations for feature visualization.
+class_data_resampler.py – Resampling techniques for handling imbalanced datasets.
+utils.py – Utility functions, including stratified sampling.
+ A [README](src/SRC_README.md) inside this folder explains the contents and usage of each script.
+
+### notebooks/ - Exploratory & Experimental Notebooks
+This directory contains Jupyter notebooks implementing different approaches for ECG classification:
+
+EDA.ipynb – Exploratory Data Analysis (EDA) and feature visualization.
+GMM.ipynb – Data augmentation using Gaussian Mixture Models with classification.
+GAN.ipynb – Synthetic data generation with a GAN and classification.
+Resample.ipynb – Resampling-based data augmentation with classification.
+No_Augmentation.ipynb – Baseline classification model without augmentation.
+[README](notebooks/NOTEBOOKS_README.md) has detailed explanations of the methodology and findings.
+
+### data/ - Dataset, Models & Figures
+CSV files: Contains the original MIT-BIH ECG dataset used for training and testing.
+Saved models: Pre-trained model weights for evaluation.
+Figures: Plots and visualizations generated during analysis.
+
+
+### api/ - Flask Application for Model Deployment
+This folder contains a minimal Flask app to serve the trained ECG classification model:
+
+app.py – The main API backend for handling requests.
+index.html – A simple frontend for user interaction.
+📌 See the [README.md](api/API_README.md) in this folder for deployment instructions.
+
+
+## Data Processing
 - **EDA:** Visualized class distribution and identified data imbalance.
 - **Data Augmentation:** Implemented with Gaussian Mixture Model (GMM) and custom augmentation class (`DataAugmentation`).
 - **Feature Engineering:** Added statistical features such as mean, standard deviation, skewness, and kurtosis.
@@ -29,26 +69,6 @@ Before training any model, we conducted an in-depth analysis of the dataset:
 - Sample Inspection: Observed a few samples of ECG signals to understand their nature.
 - Class Distribution: Visualized the distribution of heartbeat categories to assess dataset balance.
 - Feature Statistics: Computed statistical properties of the train and test sets.
-- Visualization:
-  - Plotted a few raw ECG signals.
-  - Used bar plots to show class distributions.
- - Applied Principal Component Analysis (PCA) and T-SNE to project high-dimensional data into two components for better insight.
- - As ECG signals are sequential, each data point depends on the preceding and succeeding points. 
-<p align="center">
-<img src="https://github.com/user-attachments/assets/bfedce1b-30c8-4789-980b-29073e376767" alt="Sample Image" width="500">
-</p>  
-
-<div align="center">
-    <img src="https://github.com/user-attachments/assets/d3b6d6dc-d572-49dc-b710-49008ef77238" width="500">
-    <img src="https://github.com/user-attachments/assets/2e045c68-945a-4592-8139-af8f8a7848bd" width="500">
-    <img src="https://github.com/user-attachments/assets/909ce610-830b-436b-9d1d-8a5f3401f94e" width="500">
-    <img src="https://github.com/user-attachments/assets/4152fb0d-f34a-483e-a194-1d2b911fbed6" width="500">
-    <img src="https://github.com/user-attachments/assets/941965e3-df70-403b-bfa6-a3c04ff2dd8a" width="500">
-</div>
-
-
-Findings: 
-Classes 1, 2, and 3 were significantly underrepresented in the dataset, highlighting the need for data augmentation.
 
 ###  2.Data Preparation
  - Dataset Splitting:
@@ -56,7 +76,7 @@ Classes 1, 2, and 3 were significantly underrepresented in the dataset, highligh
     Divided the test set into:
     - Regular Test Set (used for final evaluation).
     - Holdout Set (later used to test model robustness against noisy and shifted data).
-    The validation set was balanced, meaning each class had an equal number of samples. (how many ??? )
+    The validation set was balanced, meaning each class had an equal number of samples. 
 
 ### 3. Data Augmentation Techniques
  
@@ -74,16 +94,13 @@ The trained GMMs generated synthetic ECG signals to augment the dataset.
 - The discriminator networks used 1D Convolutional layers to distinguish real and fake signals.
 
 #### 3.3 Resampling (Upsampling)
-
 Used bootstrapping (resampling with replacement) to duplicate underrepresented class samples.
 The goal was to increase representation without introducing synthetic data.
-
 
 ### 4. Additional Pre-Training Augmentation
 Before training, additional data augmentation techniques were applied directly to the original ECG signals to improve model generalization:
 
 #### 4.1. Time Shifting
-
 Each ECG signal was shifted slightly forward or backward in time.
 Helps the model become invariant to phase shifts, making it more robust.
 #### 4.2. Noise Addition
@@ -93,37 +110,6 @@ Prevents overfitting and forces the model to learn more generalizable features.
 
 ### 5. Model Selection and Training
 Implemented a CNN-LSTM hybrid model for ECG classification.
-Applied batch normalization, dropout regularization, and early stopping to prevent overfitting.
-Hyperparameter tuning was conducted to optimize model performance.
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/9213b55d-417a-4a1e-8d30-7f7a89ffbca5" alt="Sample Image" width="900">
-</p>  
-
-The model is a hybrid CNN-LSTM architecture designed for time-series classification, as follows: 
-#### Convolutional Layers (Conv1D):
-- The first two Conv1D layers extract local patterns from the ECG signals.
-- The kernel size 3 allows the model to detect small changes in waveform.
-#### Batch Normalization: 
-- Stabilizes training and speeds up convergence
-
-#### MaxPooling1D: 
-- Reduces dimensionality while preserving the most important features.
-  
-#### Dropout Layers:
-- Prevents overfitting by randomly deactivating some neurons during training.
-  
-#### LSTM Layer:
-- Captures long-range dependencies in the ECG signal (detecting irregularities)
-  
-#### Dense Layers with Regularization:
-- The dense layer adds more learning capacity.
-- L2 regularization prevents overfitting. 
-
-#### Softmax Output Layer:
-- Used for multi-class classification (each ECG signal is assigned a probability for each class).
-
-This model is effective for ECG classification because CNNs extract spatial features, and LSTMs learn temporal relationships, making it suitable for time-series data like ECG signals.
 
 ### 6. Model Evaluation
 Evaluated the model on the validation set and test set.
@@ -142,67 +128,58 @@ Discussed deployment considerations including scalability, versioning, and monit
 - **Frontend:** Simple web interface for file upload and result display.
 - **Model Inference:** The API loads the trained model (`saved_model.h5`) and processes input data.
 
-
-
-## Results
-
-### No augmentation: 
-As the dataset is highly imbalanced, with a significantly larger number of samples from class 0, the model achieves high accuracy on both the training and validation sets. However, when evaluating beyond accuracy—specifically, class-wise precision; we observe that the model struggles to correctly classify the underrepresented classes, frequently misclassifying them as class 0.
-
-On the test set, the model performs well primarily on class 0 due to the data imbalance, while other classes exhibit poor classification performance. Similarly, on the holdout set, when noise is introduced, the precision of all classes decreases, though not drastically. This further highlights the model's reliance on the dominant class and the need for data balancing to improve classification performance across all classes.
-<p align="center">
-<img src="https://github.com/user-attachments/assets/1a099712-f1f5-4889-b35e-78bd46dd4b65" alt="Sample Image" width="300">
-</p>  
-
-<div align="center">
-    <img src="https://github.com/user-attachments/assets/64842f70-0c39-4dbd-88ad-185616c12c10" width="250">
-    <img src="https://github.com/user-attachments/assets/9ee97c5e-70ee-48ce-b6be-59a8a645d29f" width="250">
-</div>
-
-### Augmenting Underrepresented Classes Using Upsampling: 
-Upsampling was performed using sklearn.utils.resample to address class imbalance by increasing the number of samples for underrepresented classes. This technique duplicates and slightly varies existing samples to provide a more balanced dataset for training, improving model performance across all classes. A sample of the generated signals for Class 1 is shown in the figure below:
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/44fd270d-2005-4051-afa1-03c0b45ca9ac" alt="Sample Image" width="300">
-</p>
-
-For Class 3, I generated 6,500 samples; for Class 1, 20,000 samples; and for Class 2, 50,000 samples. The goal was to generate approximately ten times the number of samples for each instance in the training set. These generated samples were then concatenated with the existing training data. Additionally, using augmentation techniques such as time shifting, noise addition, and range scaling, the dataset size increased by 1.5 times. Below are the accuracy and confusion matrix figures:
-
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/bb1a6d4d-e0fa-4de7-8d1d-043e0191baee" alt="Sample Image" width="300">
-</p>
-
-
-<div align="center">
-    <img src="https://github.com/user-attachments/assets/9ee4d443-d9f1-4f0a-9460-926f8d261664" width="250">
-    <img src="https://github.com/user-attachments/assets/d3d9d9e6-1b24-431b-848d-b15075e55765" width="250">
-</div>
-
-The model achieved 89% accuracy on the validation set, test set, and holdout set. This consistent performance across different datasets indicates that the model generalizes well to unseen data, even under variations introduced in the holdout set.
-
-### Augmentation Using Gaussian Mixture Model (GMM):
-Gaussian Mixture Models (GMM) are a probabilistic approach that can be used for data augmentation, particularly for time-series and signal data like ECG signals. GMMs generate synthetic data by learning the underlying distribution of each class and sampling new points from it. This method is useful for handling imbalanced datasets by creating realistic variations of minority class signals while preserving their statistical properties. The generated samples are then scaled and combined with real data to enhance model generalization.
-
-
-
-## Project Structure
+## Project Structure Tree
 
 ```
 ECG_Heartbeat_Categorization/
 │
+├── api/                    # API for ECG data processing
+│   ├── app.py              # Flask application
+│   ├── generate_samples.py # Script to generate synthetic samples
+│   ├── API_README.md       # Documentation for API usage
+│   ├── templates/          # HTML templates for API
+│   │   └── index.html
+│   ├── synthetic_ecg_data_no_headers.csv # Example synthetic ECG data
+│
 ├── data/                   # Raw and processed data files
-├── notebooks/              # Jupyter notebooks for EDA, model training, and testing
-├── src/                    # Source code including model, augmentation, and API
-│   ├── cnn_lstm_classifier.py
-│   ├── data_augmentation.py
-│   └── app.py              # Flask application
-├── templates/              # HTML templates for the web interface
-│   └── index.html
-├── requirements.txt        # Python package requirements
-└── README.md               # Project documentation
+│   ├── mitbih_train.csv    # Training dataset
+│   ├── mitbih_test.csv     # Test dataset
+│   ├── saved_model/        # Folder containing trained models
+│   │   ├── GMM/saved_model.h5
+│   │   ├── Resample/saved_model.h5
+│   │   ├── no_augmentation/saved_model.h5
+│
+├── figures/                # Saved plots and figures for analysis
+│   ├── EDA/                # Exploratory Data Analysis figures
+│   │   ├── Autocorrelation_Class_0.0.png
+│   │   ├── Autocorrelation_Class_1.0.png
+│   │   ├── Frequency_Domain_Class_2.0.png
+│   │   ├── ECG_Signal_Waveforms_for_Class_4.0.png
+│   ├── Model Accuracy.png  # Model performance visualization
+│   ├── Confusion Matrix on Test Set.png
+│   ├── Distribution_of_Class_Labels.png
+│
+├── notebooks/              # Jupyter notebooks for analysis & model training
+│   ├── EDA.ipynb           # Exploratory Data Analysis notebook
+│   ├── GMM.ipynb           # Gaussian Mixture Model-based generation
+│   ├── Resample.ipynb      # Data resampling notebook
+│   ├── No_augmentation.ipynb # Training without augmentation
+│   ├── NOTEBOOKS_README.md # Documentation for notebooks
+│
+├── src/                    # Source code for model training & preprocessing
+│   ├── cnn_lstm_classifier.py  # CNN-LSTM model for ECG classification
+│   ├── data_augmentation.py    # Data augmentation techniques
+│   ├── generate_synthetic_data_gmm.py  # GMM-based synthetic ECG generation
+│   ├── class_data_resampler.py  # Resampling ECG data for balance
+│   ├── dimensionality_reduction.py  # Dimensionality reduction utilities
+│   ├── gan_time_series_generator.py  # GAN-based time-series generation
+│   ├── utils.py               # Helper functions
+│   ├── SRC_README.md          # Documentation for source files
+│
+├── requirement.txt           # Python dependencies (ensure correct name)
+├── README.md                 # Main project documentation
+├── .gitignore                # Git ignore file (for excluding unnecessary files)
 ```
-
 
 ## Installation
 
@@ -220,17 +197,6 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
-
-
-### Run the Flask App
-
-```sh
-cd src
-python app.py
-```
-
-Navigate to `http://localhost:5000` in your browser.
-
 
 ## Key Takeaways
 

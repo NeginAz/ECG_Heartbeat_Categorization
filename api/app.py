@@ -8,7 +8,7 @@ from tensorflow import keras
 app = Flask(__name__)
 
 # Load the pre-trained model with the correct relative path
-model_path = os.path.join(os.path.dirname(__file__), '../src/best_model.h5')
+model_path = os.path.join(os.path.dirname(__file__), '../src/saved_model.h5')
 print(f"Loading model from: {model_path}")
 model = keras.models.load_model(model_path)
 

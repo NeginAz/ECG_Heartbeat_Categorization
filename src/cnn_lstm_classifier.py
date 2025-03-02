@@ -19,7 +19,8 @@ class CNNLSTMClassifier:
         """Builds a simplified and regularized CNN + LSTM model."""
         model = keras.Sequential([
             # Simplified CNN layers with fewer filters and more dropout
-            layers.Conv1D(32, 3, activation='relu', input_shape=self.input_shape),
+            layers.Input(shape=self.input_shape),
+            layers.Conv1D(32, 3, activation='relu'),
             layers.BatchNormalization(),
             layers.MaxPooling1D(pool_size=2),
             layers.Dropout(0.3),
@@ -51,7 +52,7 @@ class CNNLSTMClassifier:
         # Early stopping to avoid overfitting
         early_stopping = keras.callbacks.EarlyStopping(
             monitor='val_loss',
-            patience=3,
+            patience=5,
             min_delta=0.001,
             restore_best_weights=True,
             verbose=1
@@ -59,7 +60,7 @@ class CNNLSTMClassifier:
     
         # Model checkpoint to save the best model
         model_checkpoint = keras.callbacks.ModelCheckpoint(
-            'best_model.h5',               
+            'saved_model.h5',               
             monitor='val_accuracy',            
             save_best_only=True,           
             mode='min',                    
@@ -88,8 +89,14 @@ class CNNLSTMClassifier:
         """Evaluates the model on the test set using the best saved model."""
         
         # Load the best model weights
-        self.model = keras.models.load_model('best_model.h5')
+        self.model = keras.models.load_model('saved_model.h5')
         
+        self.model.compile(
+            optimizer=keras.optimizers.Adam(learning_rate=self.learning_rate),
+            loss='sparse_categorical_crossentropy',
+            metrics=['accuracy']
+        )
+
         # Predict and evaluate
         y_pred = self.model.predict(X_test)
         y_pred_classes = np.argmax(y_pred, axis=1)
@@ -104,6 +111,28 @@ class CNNLSTMClassifier:
         plt.title('Confusion Matrix')
         plt.show()
 
+
+    def predict(self, X):
+        """
+        Generates predictions using the trained model.
+        
+        Args:
+            X (np.array): Input data for prediction.
+        
+        Returns:
+            np.array: Predicted class probabilities.
+        """
+        if self.model is None:
+            raise ValueError("The model has not been trained yet.")
+        self.model = keras.models.load_model('saved_model.h5')
+        self.model.compile(
+            optimizer=keras.optimizers.Adam(learning_rate=self.learning_rate),
+            loss='sparse_categorical_crossentropy',
+            metrics=['accuracy']
+        )
+        return self.model.predict(X, verbose=0)
+
+
     def plot_history(self):
         """Plots training and validation accuracy and loss curves."""
         plt.figure(figsize=(10, 6))
@@ -114,6 +143,7 @@ class CNNLSTMClassifier:
         plt.ylabel('Accuracy')
         plt.legend()
         plt.grid(True)
+        plt.savefig("Model Accuracy" , bbox_inches='tight', dpi=300)
         plt.show()
 
 
