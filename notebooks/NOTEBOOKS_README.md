@@ -109,7 +109,7 @@ To generate realistic ECG signals, I trained a GAN-based time-series generator.
 - Augmented training data improved classification performance.
 <p align="center"> <img src="../data/figures/GAN/Model Accuracy.png" alt="GAN Model Accuracy" width="300"> </p> <div align="center"> <img src="../data/figures/GAN/Confusion Matrix on Test Set.png" width="250"> <img src="../data/figures/GAN/Confusion Matrix for Noisy Holdout Set.png" width="250"> </div>
 
-- Validation Accuracy: 83%
+- Validation Accuracy: 50%
 - Test Accuracy: 92%
 - Holdout Set Accuracy (Noisy Data): 92%
 
