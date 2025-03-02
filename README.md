@@ -146,10 +146,6 @@ Discussed deployment considerations including scalability, versioning, and monit
 
 ## Results
 
-- Validation Accuracy: \~92%
-- Test Accuracy: \~84%
-- Holdout Set Performance: Analyzed and discussed the impact of data shifts.
-
 ### No augmentation: 
 As the dataset is highly imbalanced, with a significantly larger number of samples from class 0, the model achieves high accuracy on both the training and validation sets. However, when evaluating beyond accuracy—specifically, class-wise precision; we observe that the model struggles to correctly classify the underrepresented classes, frequently misclassifying them as class 0.
 
