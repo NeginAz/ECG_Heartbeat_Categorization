@@ -29,8 +29,7 @@ This folder contains Python classes and functions used across different notebook
 - data_augmentation.py – Functions for augmentation techniques like noise addition and time shifting.
 - dimensionality_reduction.py – PCA and t-SNE implementations for feature visualization.
 - class_data_resampler.py – Resampling techniques for handling imbalanced datasets.
-- utils.py – Utility functions, including stratified sampling.
-<br>
+- utils.py – Utility functions, including stratified sampling.␣␣
  A [README](src/SRC_README.md) inside this folder explains the contents and usage of each script.
 
 ### notebooks/ - Exploratory & Experimental Notebooks
@@ -40,8 +39,7 @@ This directory contains Jupyter notebooks implementing different approaches for 
 - GMM.ipynb – Data augmentation using Gaussian Mixture Models with classification.
 - GAN.ipynb – Synthetic data generation with a GAN and classification.
 - Resample.ipynb – Resampling-based data augmentation with classification.
-- No_Augmentation.ipynb – Baseline classification model without augmentation.
-<br>
+- No_Augmentation.ipynb – Baseline classification model without augmentation.␣␣
 [README](notebooks/NOTEBOOKS_README.md) has detailed explanations of the methodology and findings.
 
 ### data/ - Dataset, Models & Figures
@@ -54,16 +52,15 @@ This directory contains Jupyter notebooks implementing different approaches for 
 This folder contains a minimal Flask app to serve the trained ECG classification model:
 
 - app.py – The main API backend for handling requests.
-- index.html – A simple frontend for user interaction.
-<br>
+- index.html – A simple frontend for user interaction.␣␣
 See the [README.md](api/API_README.md) in this folder for deployment instructions.
 
 
 ## Data Processing
 - **EDA:** Visualized class distribution and identified data imbalance.
-- **Data Augmentation:** Implemented with Gaussian Mixture Model (GMM) and custom augmentation class (`DataAugmentation`).
+- **Data Augmentation:** Implemented with Gaussian Mixture Model (GMM), GAN, resampling and custom augmentation class (`DataAugmentation`).
 - **Feature Engineering:** Added statistical features such as mean, standard deviation, skewness, and kurtosis.
-- **Handling Imbalance:** Synthetic samples generated using GMM for minority classes.
+- **Handling Imbalance:** Synthetic samples generated using GMM, GAN, and resampling for minority classes.
 
 ### 1. Exploratory Data Analysis (EDA):
 Before training any model, we conducted an in-depth analysis of the dataset:
@@ -78,8 +75,7 @@ Before training any model, we conducted an in-depth analysis of the dataset:
     - Created a validation set from the training set to ensure fair model evaluation.
     Divided the test set into:
     - Regular Test Set (used for final evaluation).
-    - Holdout Set (later used to test model robustness against noisy and shifted data).
-    <br>
+    - Holdout Set (later used to test model robustness against noisy and shifted data).␣␣
     The validation set was balanced, meaning each class had an equal number of samples. 
 
 ### 3. Data Augmentation Techniques
