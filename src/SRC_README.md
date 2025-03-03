@@ -27,22 +27,15 @@ CNN-LSTM Model Architecture
 The CNN-LSTM hybrid model is designed for ECG time-series classification, leveraging convolutional feature extraction and sequential pattern recognition.
 
 ## Model Layers:
-- 1. Convolutional Layers (Conv1D)
-
-Extract local spatial features from ECG signals.
-Kernel size = 3 allows the model to capture small waveform variations.
-- 2. Batch Normalization
-
-Stabilizes training and accelerates convergence.
+- 1. Convolutional Layers (Conv1D) Extract local spatial features from ECG signals. Kernel size = 3 allows the model to capture small waveform variations.
+- 2. Batch Normalization Stabilizes training and accelerates convergence.
 - 3. MaxPooling1D
 
 Reduces dimensionality while preserving key features.
-- 4. Dropout Layers
-
-Prevents overfitting by randomly deactivating neurons during training.
+- 4. Dropout Layers Prevents overfitting by randomly deactivating neurons during training.
 - 5. LSTM Layer Captures long-term dependencies in ECG signals, essential for detecting irregularities.
 - 6. Fully Connected (Dense) Layers with Regularization Enhances learning capacity while preventing overfitting using L2 regularization.
-- 7. Softmax Output Layer␣␣
+- 7. Softmax Output Layer
 
 Provides multi-class classification, assigning probabilities to different ECG signal types.
 ## Why This Model?

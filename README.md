@@ -29,7 +29,9 @@ This folder contains Python classes and functions used across different notebook
 - data_augmentation.py – Functions for augmentation techniques like noise addition and time shifting.
 - dimensionality_reduction.py – PCA and t-SNE implementations for feature visualization.
 - class_data_resampler.py – Resampling techniques for handling imbalanced datasets.
-- utils.py – Utility functions, including stratified sampling.␣␣
+- utils.py – Utility functions, including stratified sampling.
+
+
  A [README](src/SRC_README.md) inside this folder explains the contents and usage of each script.
 
 ### notebooks/ - Exploratory & Experimental Notebooks
@@ -39,7 +41,9 @@ This directory contains Jupyter notebooks implementing different approaches for 
 - GMM.ipynb – Data augmentation using Gaussian Mixture Models with classification.
 - GAN.ipynb – Synthetic data generation with a GAN and classification.
 - Resample.ipynb – Resampling-based data augmentation with classification.
-- No_Augmentation.ipynb – Baseline classification model without augmentation.␣␣
+- No_Augmentation.ipynb – Baseline classification model without augmentation.
+
+
 [README](notebooks/NOTEBOOKS_README.md) has detailed explanations of the methodology and findings.
 
 ### data/ - Dataset, Models & Figures
@@ -52,7 +56,9 @@ This directory contains Jupyter notebooks implementing different approaches for 
 This folder contains a minimal Flask app to serve the trained ECG classification model:
 
 - app.py – The main API backend for handling requests.
-- index.html – A simple frontend for user interaction.␣␣
+- index.html – A simple frontend for user interaction.
+
+
 See the [README.md](api/API_README.md) in this folder for deployment instructions.
 
 
@@ -86,7 +92,6 @@ To handle the class imbalance issue, we experimented with three augmentation str
 
 We trained Gaussian Mixture Models (GMM) on the minority classes.
 The trained GMMs generated synthetic ECG signals to augment the dataset.
-
 
 #### 3.2 Generative Adversarial Networks (GANs)
 -  Implemented multiple versions of GAN-based signal generation, inspired by prior -  research on ECG synthesis.
