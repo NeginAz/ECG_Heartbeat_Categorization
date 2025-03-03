@@ -59,7 +59,7 @@ This folder contains a minimal Flask app to serve the trained ECG classification
 - index.html – A simple frontend for user interaction.
 
 
-See the [README.md](api/API_README.md) in this folder for deployment instructions.
+See the [README](api/API_README.md) in this folder for deployment instructions.
 
 
 ## Data Processing
@@ -83,7 +83,7 @@ Before training any model, we conducted an in-depth analysis of the dataset:
     - Regular Test Set (used for final evaluation).
     - Holdout Set (later used to test model robustness against noisy and shifted data).
 
-    
+
     The validation set was balanced, meaning each class had an equal number of samples. 
 
 ### 3. Data Augmentation Techniques
