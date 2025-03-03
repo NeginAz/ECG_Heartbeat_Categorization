@@ -178,7 +178,6 @@ ECG_Heartbeat_Categorization/
 │
 ├── requirement.txt           # Python dependencies (ensure correct name)
 ├── README.md                 # Main project documentation
-├── .gitignore                # Git ignore file (for excluding unnecessary files)
 ```
 
 ## Installation
@@ -214,3 +213,5 @@ The model was sensitive to data shifts and noise, requiring additional robustnes
 
 This project was developed as part of a technical test for a Data Science role. Special thanks to Physionet for the dataset and the reviewers for the opportunity to demonstrate my technical skills.
 
+
+The GAN architecture from [ECG-GAN](https://github.com/dumplingman0403/ECG-GAN/tree/main) was used. Credit goes to the original authors for their work on synthetic ECG data generation.

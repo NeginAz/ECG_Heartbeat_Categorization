@@ -10,21 +10,37 @@ Before training the models, I performed an in-depth EDA and feature analysis to 
  - Used bar plots to analyze the class distribution, revealing significant class imbalance.
  - Applied Principal Component Analysis (PCA) and t-SNE to visualize how the high-dimensional ECG  signals cluster in 2D space.
  - Observed that ECG signals are sequential, meaning each data point depends on preceding and succeeding points.
-<p align="center"> <img src="../data/figures/EDA/Distribution_of_Class_Labels.png" alt="Class Distribution" width="500"> </p> <div align="center"> 
-<img src="../data/figures/EDA/ECG_Signal_Waveforms_for_Class_0.0.png" width="500"> 
+<p align="center"> 
+<img src="../data/figures/EDA/Distribution_of_Class_Labels.png" alt="Class Distribution" width="500"> </p> 
+
+<div align="center"> 
+<img src="../data/figures/EDA/ECG_Signal_Waveforms_Class_0.0.png" width="500"> 
 <img src="../data/figures/EDA/ECG_Signal_Waveforms_Class_1.0.png" width="500"> 
-<img src="../data/figures/EDA/ECG_Signal_Waveforms_for_Class_2.0.png" width="500"> 
-<img src="../data/figures/EDA/ECG_Signal_Waveforms_for_Class_3.0.png" width="500"> 
-<img src="../data/figures/EDA/ECG_Signal_Waveforms_for_Class_4.0.png" width="500"> </div>
+<img src="../data/figures/EDA/ECG_Signal_Waveforms_Class_2.0.png" width="500"> 
+<img src="../data/figures/EDA/ECG_Signal_Waveforms_Class_3.0.png" width="500"> 
+<img src="../data/figures/EDA/ECG_Signal_Waveforms_Class_4.0.png" width="500"> </div>
 
 - Autocorrelation Analysis:
  - Analyzed temporal dependencies within ECG signals.
  - Identified patterns that could be leveraged for feature extraction.
-<div align="center"> <img src="../data/figures/EDA/Autocorrelation_Class_0.0.png" width="300"> <img src="../data/figures/EDA/Autocorrelation_Class_1.0.png" width="300"> <img src="../data/figures/EDA/Autocorrelation_Class_2.0.png" width="300"> <img src="../data/figures/EDA/Autocorrelation_Class_3.0.png" width="300"> <img src="../data/figures/EDA/Autocorrelation_Class_4.0.png" width="300"> </div>
+<div align="center">
+ <img src="../data/figures/EDA/Autocorrelation_Class_0.0.png" width="300"> 
+ <img src="../data/figures/EDA/Autocorrelation_Class_1.0.png" width="300"> 
+ <img src="../data/figures/EDA/Autocorrelation_Class_2.0.png" width="300"> 
+ <img src="../data/figures/EDA/Autocorrelation_Class_3.0.png" width="300"> 
+ <img src="../data/figures/EDA/Autocorrelation_Class_4.0.png" width="300"> 
+ </div>
+
 - Frequency-Domain Analysis:
  - Considered extracting frequency domain features using FFT for feature engineering.
  - Found that further dimensionality reduction techniques were required to make frequency-based features useful.
-<div align="center"> <img src="../data/figures/EDA/Frequency_Domain_Class_0.0.png" width="300"> <img src="../data/figures/EDA/Frequency_Domain_Class_1.0.png" width="300"> <img src="../data/figures/EDA/Frequency_Domain_Class_2.0.png" width="300"> <img src="../data/figures/EDA/Frequency_Domain_Class_3.0.png" width="300"> <img src="../data/figures/EDA/Frequency_Domain_Class_4.0.png" width="300"> </div>
+<div align="center"> 
+<img src="../data/figures/EDA/Frequency_Domain_Class_0.0.png" width="300"> 
+<img src="../data/figures/EDA/Frequency_Domain_Class_1.0.png" width="300"> 
+<img src="../data/figures/EDA/Frequency_Domain_Class_2.0.png" width="300"> 
+<img src="../data/figures/EDA/Frequency_Domain_Class_3.0.png" width="300"> 
+<img src="../data/figures/EDA/Frequency_Domain_Class_4.0.png" width="300"> 
+</div>
 - Handling Missing or Zero Values:
  - Replacing zeros with row-wise means or class-wise means reduced accuracy, suggesting that zeros might carry meaningful information in ECG signals, for example when the sensors were disconnected. 
 
@@ -48,6 +64,10 @@ Due to the severe class imbalance, the CNN-LSTM model achieved high overall accu
 <img src="../data/figures/No_augmentation/Confusion Matrix on Test Set.png" width="250"> 
 <img src="../data/figures/No_augmentation/Confusion Matrix for Noisy Holdout Set.png" width="250"> 
 </div>
+
+- Validation Accuracy: 42%
+- Test Accuracy: 90%
+- Holdout Set Accuracy (Noisy Data): 90%
 
 ## Augmentation Using Resampling (Upsampling Minority Classes)
 
@@ -115,7 +135,8 @@ To generate realistic ECG signals, I trained a GAN-based time-series generator.
 
 ## Conclusions & Next Steps
 
-Resampling outperformed traditional,GAN-based augmentation, and GMM in precision.
+The upsampling model performed the best among the approaches tested. In contrast, both GAN-based and GMM-based models generated highly noisy samples, leading to poor performance. The GAN model was implemented using code adapted from this [repository](https://github.com/dumplingman0403/ECG-GAN/tree/main), but the generated samples introduced significant artifacts, reducing overall model reliability. The test set accuracy closely matched that of the hold-out set, indicating strong generalization. This consistency was achieved through random augmentation techniques, including scaling, adding noise, and time shifting, which helped the model learn more robust features while maintaining the integrity of the original data distribution.
+
 
 - Further exploration of frequency-domain features & dimensionality reduction could enhance results.
 - Ensemble models & additional augmentation strategies could further improve minority class performance.
