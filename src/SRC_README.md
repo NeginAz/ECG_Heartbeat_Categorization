@@ -35,12 +35,11 @@ Reduces dimensionality while preserving key features.
 - 4. Dropout Layers Prevents overfitting by randomly deactivating neurons during training.
 - 5. LSTM Layer Captures long-term dependencies in ECG signals, essential for detecting irregularities.
 - 6. Fully Connected (Dense) Layers with Regularization Enhances learning capacity while preventing overfitting using L2 regularization.
-- 7. Softmax Output Layer
-
-Provides multi-class classification, assigning probabilities to different ECG signal types.
+- 7. Softmax Output Layer Provides multi-class classification, assigning probabilities to different ECG signal types.
 ## Why This Model?
 - CNN layers extract spatial features from ECG signals.
 - LSTM layers capture temporal dependencies, making it ideal for time-series classification.
 - Augmentation & Resampling improve training on imbalanced data.
-␣␣
+
+
 This model effectively classifies ECG signals by leveraging both feature extraction and sequential learning, ensuring robustness against noisy and imbalanced datasets.
