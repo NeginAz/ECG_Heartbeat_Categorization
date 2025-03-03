@@ -30,6 +30,7 @@ This folder contains Python classes and functions used across different notebook
 - dimensionality_reduction.py – PCA and t-SNE implementations for feature visualization.
 - class_data_resampler.py – Resampling techniques for handling imbalanced datasets.
 - utils.py – Utility functions, including stratified sampling.
+<br>
  A [README](src/SRC_README.md) inside this folder explains the contents and usage of each script.
 
 ### notebooks/ - Exploratory & Experimental Notebooks
@@ -40,12 +41,13 @@ This directory contains Jupyter notebooks implementing different approaches for 
 - GAN.ipynb – Synthetic data generation with a GAN and classification.
 - Resample.ipynb – Resampling-based data augmentation with classification.
 - No_Augmentation.ipynb – Baseline classification model without augmentation.
+<br>
 [README](notebooks/NOTEBOOKS_README.md) has detailed explanations of the methodology and findings.
 
 ### data/ - Dataset, Models & Figures
-CSV files: Contains the original MIT-BIH ECG dataset used for training and testing.
-Saved models: Pre-trained model weights for evaluation.
-Figures: Plots and visualizations generated during analysis.
+- CSV files: Contains the original MIT-BIH ECG dataset used for training and testing.
+- Saved models: Pre-trained model weights for evaluation.
+- Figures: Plots and visualizations generated during analysis.
 
 
 ### api/ - Flask Application for Model Deployment
@@ -53,6 +55,7 @@ This folder contains a minimal Flask app to serve the trained ECG classification
 
 - app.py – The main API backend for handling requests.
 - index.html – A simple frontend for user interaction.
+<br>
 See the [README.md](api/API_README.md) in this folder for deployment instructions.
 
 
@@ -76,6 +79,7 @@ Before training any model, we conducted an in-depth analysis of the dataset:
     Divided the test set into:
     - Regular Test Set (used for final evaluation).
     - Holdout Set (later used to test model robustness against noisy and shifted data).
+    <br>
     The validation set was balanced, meaning each class had an equal number of samples. 
 
 ### 3. Data Augmentation Techniques
