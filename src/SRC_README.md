@@ -4,22 +4,23 @@ This repository contains various implementations for ECG signal processing, augm
 
 ## Source Files
 
-- gan_time_series_generator.py
+- `gan_time_series_generator.py`:
  - Implements a fully functional Generative Adversarial Network (GAN) for ECG signal generation.
  - Allows training on real ECG signals and generating synthetic samples.
-- data_augmentation.py
- - Implements augmentation techniques such as time shifting, scaling, and adding noise to enhance dataset variability.
-- class_data_resampler.py
- - Provides a resampling-based augmentation approach using sklearn.utils.resample, balancing class distributions for improved training.
-- dimensionality_reduction.py
+- `data_augmentation.py`:
+ - Implements augmentation techniques such as time shifting,       scaling, and adding noise to enhance dataset variability.
+- `class_data_resampler.py`:
+ - Provides a resampling-based augmentation approach using `sklearn.utils.resample`, balancing class distributions for improved training.
+- `dimensionality_reduction.py`:
  - Implements Principal Component Analysis (PCA) and t-SNE for feature reduction and visualization of ECG signal clusters.
-- generate_synthetic_data_gmm.py
+- `generate_synthetic_data_gmm.py`:
  - Implements Gaussian Mixture Models (GMM) for generating synthetic ECG signals, approximating real data distributions.
-- cnn_lstm_classifier.py
+- `cnn_lstm_classifier.py`:
  - Implements a CNN-LSTM hybrid model for ECG classification.
  - Features batch normalization, dropout regularization, and early stopping to prevent overfitting.
  - Includes hyperparameter tuning for optimal model performance.
-CNN-LSTM Model Architecture
+
+## CNN-LSTM Model Architecture
 
 <p align="center"> <img src="../data/figures/EDA/saved_model.h5.png" alt="CNN-LSTM Model" width="900"> </p>
 
